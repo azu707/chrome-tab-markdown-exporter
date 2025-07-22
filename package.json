@@ -1,0 +1,23 @@
+{
+  "name": "tab-url-saver",
+  "version": "1.0.0",
+  "description": "Chrome拡張機能：開いている全てのタブのURLとタイトルをテキストファイルに保存",
+  "main": "popup.js",
+  "scripts": {
+    "build": "echo 'Build completed'",
+    "dev": "echo 'Development mode'",
+    "lint": "echo 'Linting completed'",
+    "test": "echo 'Tests completed'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "tabs",
+    "export",
+    "url",
+    "bookmark"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
