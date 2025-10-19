@@ -89,13 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
     content += `**Total Tabs:** ${tabs.length}\n\n`;
     content += `---\n\n`;
 
-    tabs.forEach((tab, index) => {
-      content += `## ${index + 1}. ${tab.title}\n\n`;
-      content += `- **URL:** [${tab.url}](${tab.url})\n`;
-      content += `- **Window ID:** ${tab.windowId}\n`;
+    tabs.forEach((tab) => {
+      content += `## ${tab.title}\n\n`;
+
+      content += `[${tab.url}](${tab.url})\n\n`;
 
       if (tab.favIconUrl) {
-        content += `- **Favicon:** ![favicon](${tab.favIconUrl})\n`;
+        content += `![favicon](${tab.favIconUrl})\n\n`;
       }
 
       // メタ情報を追加
@@ -105,31 +105,31 @@ document.addEventListener('DOMContentLoaded', function() {
         // 説明文（優先順位: OG > meta description > Twitter）
         const description = meta.ogDescription || meta.description || meta.twitterDescription;
         if (description) {
-          content += `- **Description:** ${description}\n`;
+          content += `${description}\n\n`;
         }
 
         // キーワード
         if (meta.keywords) {
-          content += `- **Keywords:** ${meta.keywords}\n`;
+          content += `**Keywords:** ${meta.keywords}\n\n`;
         }
 
         // 著者
         if (meta.author) {
-          content += `- **Author:** ${meta.author}\n`;
+          content += `**Author:** ${meta.author}\n\n`;
         }
 
         // OG画像
         if (meta.ogImage) {
-          content += `- **OG Image:** ![og-image](${meta.ogImage})\n`;
+          content += `![og-image](${meta.ogImage})\n\n`;
         }
 
         // コンテンツタイプ
         if (meta.ogType) {
-          content += `- **Type:** ${meta.ogType}\n`;
+          content += `**Type:** ${meta.ogType}\n\n`;
         }
       }
 
-      content += `\n`;
+      content += `---\n\n`;
     });
 
     return content;
