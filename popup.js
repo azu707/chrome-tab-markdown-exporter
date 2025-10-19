@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateTabCount() {
     chrome.tabs.query({}, function(allTabs) {
       chrome.tabs.query({currentWindow: true}, function(currentWindowTabs) {
-        tabCountDiv.textContent = `全タブ数: ${allTabs.length} | 現在のウィンドウ: ${currentWindowTabs.length}`;
+        tabCountDiv.textContent = `現在のウィンドウ: ${currentWindowTabs.length} | 全タブ数: ${allTabs.length}`;
       });
     });
   }
