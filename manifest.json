@@ -5,7 +5,18 @@
   "description": "開いている全てのタブのURLとタイトルをテキストファイルに保存する拡張機能",
   "permissions": [
     "tabs",
-    "downloads"
+    "downloads",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
   ],
   "action": {
     "default_popup": "popup.html",
