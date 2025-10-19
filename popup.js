@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // ファイル内容を生成
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const content = generateTabsContent(tabs);
-      const filename = `${filePrefix}_${timestamp}.txt`;
+      const filename = `${filePrefix}_${timestamp}.md`;
       
       // Blobを作成してダウンロード
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       
       chrome.downloads.download({
@@ -60,21 +60,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function generateTabsContent(tabs) {
     const timestamp = new Date().toLocaleString('ja-JP');
-    let content = `Tab URLs Export\n`;
-    content += `Export Date: ${timestamp}\n`;
-    content += `Total Tabs: ${tabs.length}\n`;
-    content += `\n${'='.repeat(80)}\n\n`;
-    
+    let content = `# Tab URLs Export\n\n`;
+    content += `**Export Date:** ${timestamp}  \n`;
+    content += `**Total Tabs:** ${tabs.length}\n\n`;
+    content += `---\n\n`;
+
     tabs.forEach((tab, index) => {
-      content += `[${index + 1}] ${tab.title}\n`;
-      content += `URL: ${tab.url}\n`;
-      content += `Window ID: ${tab.windowId}\n`;
+      content += `## ${index + 1}. ${tab.title}\n\n`;
+      content += `- **URL:** [${tab.url}](${tab.url})\n`;
+      content += `- **Window ID:** ${tab.windowId}\n`;
       if (tab.favIconUrl) {
-        content += `Favicon: ${tab.favIconUrl}\n`;
+        content += `- **Favicon:** ![favicon](${tab.favIconUrl})\n`;
       }
-      content += `\n${'-'.repeat(40)}\n\n`;
+      content += `\n`;
     });
-    
+
     return content;
   }
   
